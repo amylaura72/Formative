@@ -1,0 +1,17 @@
+ #!/bin/bash
+
+##this code will run basic checks and investigation on the body measures data.
+##This code is designed to be run from the formative folder, as code/basic_checks_bm
+
+#counting the number of lines of data
+wc -l data/original/BMX_D.csv
+
+#looking at the top 15 lines (to see how it is layed out and also check if there is any extra stuff at the top
+head -n15 data/original/BMX_D.csv
+
+#also looking at the last 10 to check it looks the same towards the bottom
+tail data/original/BMX_D.csv
+
+#checking for columns which dont have the same number of columns as the first line
+awk -F, '{print NF}' data/original/BMX_D.csv | head -n1
+awk -F, '{print NF}' data/original/BMX_D.csv | grep -v 28
