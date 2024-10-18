@@ -9,12 +9,12 @@ demo_subset <- demo |> select(SEQN, RIAGENDR, RIDAGEYR, RIDRETH1) |>
   janitor::clean_names()
 
 #read in the demographics data and set all names to lowercase
-bmx <- read_csv('../../data/derived/BMX_IDs.txt')
+bmx <- read_csv('../../data/original/BMX_D.csv')
 bmx <- bmx |> janitor::clean_names()
 
 #joining the bmx and demogramphic data sets together, keeping the rows from the demographic data
-demo_bmi <- demo_subset |> left_join(bmx) |>
-  relocate(bmxbmi, .after = seqn)
+demo_bmi <- bmx |> left_join(demo_subset) |>
+  relocate(riagendr:ridreth1 ,.after = seqn)
 
 #loading in the accel id_indicator data
 sample_ids <- read_csv('../../data/derived/sampleIDs.csv')
