@@ -1,0 +1,10 @@
+This file contains the commands used to set up the environment for the project
+
+conda create -n formative_env
+
+conda activate formative_env
+
+conda install r-base=4.4.1 r-tidyverse=2.0.0 r-janitor=2.2.0 r-this.path
+
+conda export --from-history > projectenv.yml
+
