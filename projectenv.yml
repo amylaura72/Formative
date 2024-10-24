@@ -6,4 +6,5 @@ dependencies:
   - r-base=4.4.1
   - r-tidyverse=2.0.0
   - r-this.path
+  - r-janitor=2.2.0
 prefix: /home/amy/miniconda3/envs/formative-env

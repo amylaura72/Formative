@@ -3,8 +3,8 @@ setwd(this.dir())
 getwd()
 
 #load in the two lists of IDs, will make combined list into the accel one so have given it a generic name
-IDs <-  read.table('../data/derived/accel/accel_ids.txt', header=F, col.names='PID')
-BMX <-  read.csv('../data/derived/BMX_IDs.txt')
+IDs <-  read.table('../../data/derived/accel/accel_ids.txt', header=F, col.names='PID')
+BMX <-  read.csv('../../data/derived/BMX_IDs.txt')
 colnames(BMX)[1] <- "PID"
 
 #adding an indicator variable for accel IDs

@@ -1,10 +1,7 @@
 -----environment-------
 This code was run on a Windows 11 computer using a Linux subsystem
-use the following lines of code to set up the conda environment
-"conda activate
-conda env create -f project_environment.yml 
-conda activate formative-env"
-This environment incluses the versions of R and tidyverse used s well as anyother R packages. 
+
+The envorinment environment incluses the versions of R and tidyverse used as well as any other R packages. 
 
 
 ----- Data summary -----
@@ -24,3 +21,9 @@ This environment incluses the versions of R and tidyverse used s well as anyothe
       these lines are all have 3 columns which read "NA	NA	NA"
       these lines are either in 31268 or 34974
    headers occur 7455 times, so likely once per file
+3. Demographics data
+   Contained within 1 file
+   line count - 10384
+   one participant per row
+   Includes demographic data about patients: including gender, age and
+   ethnicity (which will be the ones used)

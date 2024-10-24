@@ -1,6 +1,6 @@
 #!/bin/bash
 
-##designed to be run from the formative folder as code/get_accel_ids.txt
+##designed to be run from the formative folder as code/data_prep/get_accel_ids.txt
 ## this code will retrive the IDs for all the people we have data for
 
 #getting the IDs for the accel data

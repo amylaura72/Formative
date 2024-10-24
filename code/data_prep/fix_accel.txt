@@ -2,7 +2,7 @@
 
 ##this code aims to fix the issues identified through the data check code. It will also re-run some of the previous
 ##checks to ensure that the fixes have worked.
-##Should be run from the formative folder as code/fix_accel.txt
+##Should be run from the formative folder as code/data_prep/fix_accel.txt
 
 #moving all files to derived data
 mkdir data/derived/accel

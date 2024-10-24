@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##this code investigates and checks the accel data
-##should be run from the formative file as code/basic_checks_accel
+##should be run from the formative file as code/data_prep/basic_checks_accel
 
 #counting how many files we have in this folder
 ls data/original/accel | wc -l
