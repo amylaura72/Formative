@@ -1,0 +1,37 @@
+host: DESKTOP-8QB05RP
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count
+---------  -------
+BMX_check        1
+total            1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 31 15:38:42 2024]
+localrule BMX_check:
+    input: data/original/BMX_D.csv
+    jobid: 0
+    reason: Rules with a run or shell declaration but no output are always executed.
+    resources: tmpdir=/tmp
+
+[Thu Oct 31 15:38:43 2024]
+Error in rule BMX_check:
+    jobid: 0
+    input: data/original/BMX_D.csv
+    shell:
+        
+    mkdir intermediate
+    bash code/data_prep/basic_checks_bm.txt > intermediate/bm_log.txt
+    
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-10-31T153842.809451.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

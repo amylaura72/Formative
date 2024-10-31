@@ -15,3 +15,4 @@ tail data/original/BMX_D.csv
 #checking for columns which dont have the same number of columns as the first line
 awk -F, '{print NF}' data/original/BMX_D.csv | head -n1
 awk -F, '{print NF}' data/original/BMX_D.csv | grep -v 28
+ls

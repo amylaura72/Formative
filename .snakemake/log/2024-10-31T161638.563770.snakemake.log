@@ -1,0 +1,99 @@
+host: DESKTOP-8QB05RP
+Building DAG of jobs...
+shared_storage_local_copies: True
+remote_exec: False
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count
+---------  -------
+BMX_check        1
+all              1
+total            2
+
+Resources before job selection: {'_cores': 1, '_nodes': 9223372036854775807, '_job_count': 9223372036854775807}
+Ready jobs: 1
+Select jobs to execute...
+Selecting jobs to run using greedy solver.
+Selected jobs: 1
+Resources after job selection: {'_cores': 0, '_nodes': 9223372036854775806, '_job_count': 9223372036854775807}
+Execute 1 jobs...
+
+[Thu Oct 31 16:16:38 2024]
+localrule BMX_check:
+    input: data/original/BMX_D.csv
+    output: logs/bm_log.log
+    jobid: 1
+    reason: Missing output files: logs/bm_log.log
+    resources: tmpdir=/tmp
+
+Full Traceback (most recent call last):
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/executors/local.py", line 423, in run_wrapper
+    run(
+  File "/mnt/c/users/Amy/Onedrive/documents/Masters/data_science/formative/Snakefile", line 30, in __rule_BMX_check
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/shell.py", line 357, in __new__
+    raise sp.CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command 'set -euo pipefail;  
+    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log' returned non-zero exit status 1.
+
+Full Traceback (most recent call last):
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/executors/local.py", line 423, in run_wrapper
+    run(
+  File "/mnt/c/users/Amy/Onedrive/documents/Masters/data_science/formative/Snakefile", line 30, in __rule_BMX_check
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/shell.py", line 357, in __new__
+    raise sp.CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command 'set -euo pipefail;  
+    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log' returned non-zero exit status 1.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/executors/local.py", line 261, in _callback
+    raise ex
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/executors/local.py", line 247, in cached_or_run
+    run_func(*args)
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/executors/local.py", line 459, in run_wrapper
+    raise RuleException(
+snakemake.exceptions.RuleException: CalledProcessError in file /mnt/c/users/Amy/Onedrive/documents/Masters/data_science/formative/Snakefile, line 9:
+Command 'set -euo pipefail;  
+    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log' returned non-zero exit status 1.
+
+RuleException:
+CalledProcessError in file /mnt/c/users/Amy/Onedrive/documents/Masters/data_science/formative/Snakefile, line 9:
+Command 'set -euo pipefail;  
+    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log' returned non-zero exit status 1.
+[Thu Oct 31 16:16:39 2024]
+Error in rule BMX_check:
+    jobid: 1
+    input: data/original/BMX_D.csv
+    output: logs/bm_log.log
+    shell:
+        
+    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log
+    
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job BMX_check since they might be corrupted:
+logs/bm_log.log
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-10-31T161638.563770.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks
+Full Traceback (most recent call last):
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/cli.py", line 2158, in args_to_api
+    dag_api.execute_workflow(
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/api.py", line 595, in execute_workflow
+    workflow.execute(
+  File "/home/amy/miniconda3/envs/formative-env/lib/python3.12/site-packages/snakemake/workflow.py", line 1302, in execute
+    raise WorkflowError("At least one job did not complete successfully.")
+snakemake_interface_common.exceptions.WorkflowError: At least one job did not complete successfully.
+
+WorkflowError:
+At least one job did not complete successfully.

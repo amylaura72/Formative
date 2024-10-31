@@ -1,0 +1,40 @@
+host: DESKTOP-8QB05RP
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count
+---------  -------
+BMX_check        1
+all              1
+total            2
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 31 16:26:00 2024]
+localrule BMX_check:
+    input: data/original/BMX_D.csv
+    output: bm_log.log
+    jobid: 1
+    reason: Missing output files: bm_log.log
+    resources: tmpdir=/tmp
+
+[Thu Oct 31 16:26:00 2024]
+Finished job 1.
+1 of 2 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 31 16:26:00 2024]
+localrule all:
+    input: bm_log.log
+    jobid: 0
+    reason: Input files updated by another job: bm_log.log
+    resources: tmpdir=/tmp
+
+[Thu Oct 31 16:26:00 2024]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2024-10-31T162600.292151.snakemake.log

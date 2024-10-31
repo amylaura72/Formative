@@ -1,0 +1,23 @@
+host: DESKTOP-8QB05RP
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job            count
+-----------  -------
+accel_check        1
+all                1
+total              2
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Oct 31 16:37:19 2024]
+localrule accel_check:
+    input: data/original/accel/accel-31128.txt
+    output: logs/accel_log.log
+    jobid: 1
+    reason: Missing output files: logs/accel_log.log; Code has changed since last execution
+    resources: tmpdir=/tmp
+

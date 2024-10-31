@@ -1,0 +1,6 @@
+host: DESKTOP-8QB05RP
+Building DAG of jobs...
+MissingInputException in rule all in file /mnt/c/users/Amy/Onedrive/documents/Masters/data_science/Formative/Snakefile, line 1:
+Missing input files for rule all:
+    affected files:
+        bm_log.log
