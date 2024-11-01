@@ -34,4 +34,4 @@ for (i in 1:nrow(IDs)){
 print(table(IDs$sample))
 
 #save results to a file
-write.csv(x = IDs[,c('PID', 'sample')], file='../data/derived/sampleIDs.csv')
+write.csv(x = IDs[,c('PID', 'sample')], file='../../data/derived/sampleIDs.csv')

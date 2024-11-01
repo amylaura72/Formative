@@ -1,0 +1,38 @@
+host: DESKTOP-8QB05RP
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job        count
+-------  -------
+id_list        1
+total          1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Fri Nov  1 12:01:03 2024]
+localrule id_list:
+    input: data/derived/accel/accel_ids.txt, data/derived/BMX_IDs.txt
+    output: data/derived/sampleIDs.csv
+    jobid: 0
+    reason: Updated input files: data/derived/accel/accel_ids.txt, data/derived/BMX_IDs.txt
+    resources: tmpdir=/tmp
+
+[Fri Nov  1 12:01:04 2024]
+Error in rule id_list:
+    jobid: 0
+    input: data/derived/accel/accel_ids.txt, data/derived/BMX_IDs.txt
+    output: data/derived/sampleIDs.csv
+    shell:
+        
+    Rscript code/data_prep/compare_ids.R 
+    
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-11-01T120102.818046.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

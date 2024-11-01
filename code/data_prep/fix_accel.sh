@@ -17,7 +17,7 @@ sed -i '/NA\tNA\tNA/d' data/derived/accel/accel-31268.txt
 sed -i '/NA\tNA\tNA/d' data/derived/accel/accel-34974.txt
 
 #checking to ensure that the files now have the correct header as the first lin
-head -n2 data/original/accel/a*.txt | awk -F'\t' '($1=="\"PAXSTAT\"" && $2=="\"PAXCAL\"" && $3=="\"PAXDAY\"" && $4=="\"PAXN\"" && $5=="\"PAXHOUR\"" && $6=="\"PAXMINUT\"" && $7=="\"PAXINTEN\"" && $8=="\"PAXSTEP\"") {print $0}' | wc -l
+head -n1 data/derived/accel/a*.txt | awk -F'\t' '($1=="\"PAXSTAT\"" && $2=="\"PAXCAL\"" && $3=="\"PAXDAY\"" && $4=="\"PAXN\"" && $5=="\"PAXHOUR\"" && $6=="\"PAXMINUT\"" && $7=="\"PAXINTEN\"" && $8=="\"PAXSTEP\"") {print $0}' | wc -l
 
 #checking to ensure there are now 8 columns in every row
 cat data/derived/accel/a*.txt | grep -v '<' | awk -F'\t' '{print NF}' | grep -v 8 | wc -l
