@@ -3,7 +3,7 @@ setwd(this.dir())
 getwd()
 
 #load in the two lists of IDs, will make combined list into the accel one so have given it a generic name
-IDs <-  read.table('../../data/derived/accel/accel_ids.txt', header=F, col.names='PID')
+IDs <-  read.table('../../data/derived/accel_ids.txt', header=F, col.names='PID')
 BMX <-  read.csv('../../data/derived/BMX_IDs.txt')
 colnames(BMX)[1] <- "PID"
 
@@ -31,7 +31,9 @@ for (i in 1:nrow(IDs)){
 }
 
 #find the number of poeple in (and not in) our sample
+print("people in sample, vs people not in sample:")
 print(table(IDs$sample))
 
 #save results to a file
 write.csv(x = IDs[,c('PID', 'sample')], file='../../data/derived/sampleIDs.csv')
+print("results saved")

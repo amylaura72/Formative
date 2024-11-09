@@ -11,10 +11,12 @@ demo_subset <- demo |> select(SEQN, RIAGENDR, RIDAGEYR, RIDRETH1) |>
 #read in the demographics data and set all names to lowercase
 bmx <- read_csv('../../data/original/BMX_D.csv')
 bmx <- bmx |> janitor::clean_names()
+print("data sets both read in")
 
 #joining the bmx and demogramphic data sets together, keeping the rows from the demographic data
 demo_bmi <- bmx |> left_join(demo_subset) |>
   relocate(riagendr:ridreth1 ,.after = seqn)
+print("data sets joint")
 
 #loading in the accel id_indicator data
 sample_ids <- read_csv('../../data/derived/sampleIDs.csv')
@@ -24,10 +26,13 @@ sample_ids <- sample_ids |> select(PID, sample)
 demo_bmi_accelid <- demo_bmi |> left_join(sample_ids, join_by(seqn==PID)) |>
   rename(in_sample = sample) |>
   relocate(in_sample, .after = seqn)
+print("accel ID loaded and merged")
 
 #creating an indicator variable called 'obesity' 
 demo_bmi_accelid <- demo_bmi_accelid |> mutate(
   obesity = ifelse(bmxbmi<25,0,1)
 )
+print("obesity variable created")
 
 write_csv(demo_bmi_accelid, '../../data/derived/body_measurements.csv')
+print("combined sample saved")

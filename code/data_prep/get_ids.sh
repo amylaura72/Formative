@@ -4,7 +4,9 @@
 ## this code will retrive the IDs for all the people we have data for
 
 #getting the IDs for the accel data
-ls data/derived/accel | grep -Eo '[0-9]+' > data/derived/accel/accel_ids.txt
+ls data/derived/accel | grep -Eo '[0-9]+' > data/derived/accel_ids.txt
+echo "accel IDs saved"
 
 #getting the IDs for the BMX data
 cut -f2,12 -d',' data/original/BMX_D.csv > data/derived/BMX_IDs.txt
+echo "BMX IDs saved"

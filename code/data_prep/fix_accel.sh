@@ -5,11 +5,11 @@
 ##Should be run from the formative folder as code/data_prep/fix_accel.txt
 
 #moving all files to derived data
-mkdir data/derived/accel
+mkdir -p data/derived/accel
 cp data/original/accel/a*.txt data/derived/accel
 
 #removing the top line of all derived files
-#sed -i '1d' data/derived/accel/a*.txt
+sed -i '1d' data/derived/accel/a*.txt
 #####keeping this code (above) as a comment to avoid removing the header lines
 
 #removing NA lines from 31268 and 34974
