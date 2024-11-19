@@ -1,0 +1,49 @@
+host: compute068.bc4.acrc.priv
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Provided resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, ntasks=1, nodes=1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:41:08 2024]
+rule BMX_check:
+    input: data/original/BMX_D.csv
+    output: logs/bm_log.log
+    jobid: 0
+    reason: Forced execution
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=60, ntasks=1, nodes=1
+
+
+    mkdir -p logs
+    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log
+    
+host: compute068.bc4.acrc.priv
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, ntasks=1, nodes=1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:41:08 2024]
+localrule BMX_check:
+    input: data/original/BMX_D.csv
+    output: logs/bm_log.log
+    jobid: 0
+    reason: Forced execution
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=/tmp, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=60, ntasks=1, nodes=1
+
+
+    mkdir -p logs
+    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log
+    
+[Thu Nov 14 15:41:09 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Storing output in storage.
+[Thu Nov 14 15:41:09 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Storing output in storage.

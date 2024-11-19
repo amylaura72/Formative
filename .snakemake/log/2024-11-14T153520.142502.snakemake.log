@@ -1,0 +1,38 @@
+host: bc4login3
+Building DAG of jobs...
+SLURM run ID: 159301a5-3435-403e-b9fd-12b181870396
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Job stats:
+job             count
+------------  -------
+BMX_check           1
+accel_check         1
+accel_fix           1
+all                 1
+data_summary        1
+get_ids             1
+id_list             1
+merge_data          1
+total               8
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Nov 14 15:35:38 2024]
+rule BMX_check:
+    input: data/original/BMX_D.csv
+    output: logs/bm_log.log
+    jobid: 7
+    reason: Missing output files: logs/bm_log.log
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=200, ntasks=1, nodes=1
+
+
+    mkdir -p logs
+    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log
+    
+Job 7 has been submitted with SLURM jobid 10705593 (log: /user/home/zp24731/Projects/Formative/.snakemake/slurm_logs/rule_BMX_check/10705593.log).
+Terminating processes on user request, this might take some time.
+Complete log: .snakemake/log/2024-11-14T153520.142502.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

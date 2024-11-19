@@ -1,0 +1,47 @@
+host: compute068.bc4.acrc.priv
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Provided resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, ntasks=1, nodes=1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov 18 13:57:38 2024]
+rule id_list:
+    input: data/derived/accel_ids.txt, data/derived/BMX_IDs.txt, logs/get_ID_log.log
+    output: data/derived/sampleIDs.csv, logs/id_list_log
+    jobid: 0
+    reason: Forced execution
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=120, ntasks=1, nodes=1
+
+
+    Rscript code/data_prep/compare_ids.R  > logs/id_list_log
+    
+host: compute068.bc4.acrc.priv
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, ntasks=1, nodes=1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Nov 18 13:57:39 2024]
+localrule id_list:
+    input: data/derived/accel_ids.txt, data/derived/BMX_IDs.txt, logs/get_ID_log.log
+    output: data/derived/sampleIDs.csv, logs/id_list_log
+    jobid: 0
+    reason: Forced execution
+    resources: mem_mb=100, mem_mib=96, disk_mb=1000, disk_mib=954, tmpdir=/tmp, slurm_partition=teach_cpu, slurm_account=sscm033324, runtime=120, ntasks=1, nodes=1
+
+
+    Rscript code/data_prep/compare_ids.R  > logs/id_list_log
+    
+[Mon Nov 18 13:57:41 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Storing output in storage.
+[Mon Nov 18 13:57:42 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Storing output in storage.
