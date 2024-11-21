@@ -4,6 +4,13 @@ import re
 accel_files = glob.glob("data/original/accel/accel-*.txt")
 ACC_PID = [int(re.search(r"accel-(\d+).txt", f).group(1)) for f in accel_files]
 
+# The list of PID prefixes to use as batches
+indexes = [str(x) for x in range(31, 42)]
+
+# Create a dictionary of PID prefixes to lists of PID values
+# This is a dictionary of lists, one list for every index in `indexes`
+ACC_PID_dict = {index: [pid for pid in ACC_PID if str(pid).startswith(index)] for index in indexes}
+
 rule all:
     "The default rule"
     input: "logs/data_summary_log.log"
@@ -13,39 +20,43 @@ rule BMX_check:
     input: "data/original/BMX_D.csv"
     output: "logs/bm_log.log"
     shell: """
-    mkdir -p logs
-    bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log
-    """
+        mkdir -p logs
+        bash code/data_prep/basic_checks_bm.sh > logs/bm_log.log
+        """
 
-rule accel_check:
-    "check the accel data"
-    input: 
-        expand("data/original/accel/accel-{pid}.txt", pid=ACC_PID),
-        "logs/bm_log.log"
-    output: "logs/accel_log.log"
-    shell: """
-    mkdir -p logs
-    bash code/data_prep/basic_checks_accel.sh > logs/accel_log.log
-    """
+for index in indexes:
+    rule:
+        name: f"{index}_check_accel_data"
+        params: index=f"{index}"
+        input:
+            "logs/1-data-check-bm.log",
+            expand("data/original/accel/accel-{pid}.txt", pid=ACC_PID_dict[index])
+        output: f"logs/accel_log_{index}.log"
+        shell: """
+            mkdir -p logs       
+            bash code/data_prep/basic_checks_accel.sh {params.index} > logs/accel_log_{index}.log
+            """
 
-rule accel_fix:
-    "fix the accel data"
-    input: 
-        "logs/accel_log.log",
-        expand("data/original/accel/accel-{pid}.txt", pid=ACC_PID)
-    output: 
-        expand("data/derived/accel/accel-{pid}.txt", pid=ACC_PID),
-        "logs/accel_fix_log.log"
-    shell: """
-    bash code/data_prep/fix_accel.sh > logs/accel_fix_log.log
-    """
+for index in indexes:
+    rule:
+        name: f"{index}_fix_accel_data"
+        params: index=f"{index}"
+        input: 
+            f"logs/2-data-check-accel_{index}.log",
+                expand("data/original/accel/accel-{pid}.txt", pid=ACC_PID_dict[index])
+        output: 
+            expand("data/derived/accel/accel-{pid}.txt", pid=ACC_PID_dict[index]),
+            f"logs/accel_fix_log_{index}.log"
+        shell: """
+            bash code/data_prep/fix_accel.sh {params.index} > logs/accel_fix_log_{index}.log
+            """
 
 rule get_ids:
     "get a list of IDs present in both data sets"
     input: 
         expand("data/derived/accel/accel-{pid}.txt", pid=ACC_PID),
         "data/original/BMX_D.csv",
-        "logs/accel_fix_log.log"
+        expand("logs/3-data-fix-accel_{index}.log", index=indexes)
     output: 
         "data/derived/accel_ids.txt",
         "data/derived/BMX_IDs.txt",
@@ -55,7 +66,7 @@ rule get_ids:
     """
 
 rule id_list:
-    "make a list of which IDs are contained in both datasets"
+    "make a list of which compares Ids that are in both datasets"
     input:
         "data/derived/accel_ids.txt",
         "data/derived/BMX_IDs.txt",
